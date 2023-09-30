@@ -4,13 +4,19 @@ import {
   Links,
   LiveReload,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
+  useHref,
 } from "@remix-run/react";
 
-export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+import globalStyles from "~/styles/global.css";
+import { Layout } from "./Layout";
+
+export const links = () => [
+  {
+    rel: "stylesheet",
+    href: globalStyles,
+  },
 ];
 
 export default function App() {
@@ -19,11 +25,12 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>my Remix</title>
         <Meta />
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Layout />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
